@@ -1,0 +1,8 @@
+# descritption des facteurs au format CSV du fichier ishigami_fast.XML
+# HR 2011-05-05
+# name 	; id	; unit	; nominalValue ; distributionName	; distributionParameter ; level ; features
+#	
+x1	; x1	; 	; 0		; unif			; min=-3.14, max=3.14 	; 	; 
+x2	; x2	; 	; 0		; unif			; min=-3.14, max=3.14	; 	; 
+x3	; x3	; 	; 0		; unif			; min=-3.14, max=3.14 	; 	; 
+

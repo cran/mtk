@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxd:experimentalDesign
+	xmlns:mxd="http://www.reseau-mexico.fr/sites/reseau-mexico.fr/files/expDesign.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.reseau-mexico.fr/sites/reseau-mexico.fr/files/expDesign.xsd expDesign_last.xsd "
+	author="JW" id="Ishigami_Fast" date="2010-02-26" license="Private"
+	version="1.0">
+	
+	<mxd:description>
+		Ishigami is an example provided with the package "Sensitivity" and here the example is analysed with the method "Fast".
+	</mxd:description>
+	
+	<mxd:factors>
+		<mxd:factor id="x1" mxd:name="x1">
+			<mxd:domain nominalValue="0" distributionName="unif" mxd:valueType="xs:float">
+				<mxd:distributionParameter mxd:name="min" mxd:value="-3.14" mxd:valueType="xs:float " />
+				<mxd:distributionParameter mxd:name="max" mxd:value="3.14" mxd:valueType="xs:float" />
+			</mxd:domain>
+		</mxd:factor>
+		
+		<mxd:factor id="x2" mxd:name="x2">
+			<mxd:domain nominalValue="0"
+				distributionName="unif" mxd:valueType="xs:float">
+				<mxd:distributionParameter mxd:name="min" mxd:value="-3.14"
+					mxd:valueType="xs:float " /><mxd:distributionParameter
+					mxd:name="max" mxd:value="3.14" mxd:valueType="xs:float" />
+			</mxd:domain>
+		</mxd:factor>
+		
+		<mxd:factor id="x3" mxd:name="x3">
+			<mxd:domain nominalValue="0"
+				distributionName="unif" mxd:valueType="xs:float">
+				<mxd:distributionParameter mxd:name="min" mxd:value="-3.14"
+					mxd:valueType="xs:float " /><mxd:distributionParameter
+					mxd:name="max" mxd:value="3.14" mxd:valueType="xs:float" />
+			</mxd:domain>
+		</mxd:factor>
+		</mxd:factors>
+	<mxd:workflow>
+		<mxd:process stage="design">
+			<mxd:call>R://mtk/Fast</mxd:call>
+			<mxd:parameters>
+				<mxd:parameter mxd:name="n" mxd:value="1000" mxd:valueType="xs:integer" />
+			</mxd:parameters>
+		</mxd:process>
+		<mxd:process stage="evaluate">
+			<mxd:call>R://mtk/Ishigami</mxd:call>
+		</mxd:process>
+		<mxd:process stage="analyze">
+			<mxd:call>R://mtk/Default</mxd:call>
+		</mxd:process>
+	</mxd:workflow>
+
+
+</mxd:experimentalDesign>

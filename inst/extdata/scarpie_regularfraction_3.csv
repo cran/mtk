@@ -1,0 +1,17 @@
+# descritption des facteurs au format CSV du fichier scarpie_regularfraction.xml
+# HR 2011-05-10
+# name	; id	; unit	; nominalValue	; distributionName	; distributionParameter	; level					; features			;
+#
+breed	; 	; 	; autorenouv	; discrete		;			;autorenouv:1 , perte1:1,pertemax:1	;ordered=True, nlevels=3	;
+intro	;	; 	; 0		; discrete		; min=0, max=2		;					;ordered=TRUE, nlevels=3	;
+k_br	;	;	; 2		; continuous		; min=1, max=4		;					;nlevels=3		  	;
+flock	;	;	; MTR		; discrete		; 			;MTR , MTN , lacaunelait		;ordered=FALSE, nlevels=3	;
+beta1	;	;	; 10.7		; continuous		;			;					;relative=TRUE, percent=20, nlevels=3;
+tau_med ;	;	; 2		; continuous		; min=1.5, max=3.0	;					;range=TRUE, nlevels=3		;
+tau_ratio;	;	; 0.85		; continuous		; min=0.7, max=1.0	;					;range=TRUE, nlevels=3		;
+sigma_med;	;	; 0.6		; continuous		; min=0.2, max=1.0	;					;range=TRUE, nlevels=3 		;
+aseuil	;	;	; 5		; discrete		;			; 1 , 5 , 10 				;ordered=TRUE, nlevels=3	;
+sigma_amin;	;	; 0.6		; continuous		; min=0, max=1.0	;					;range=TRUE, nlevels=3		;
+k_r	;	;	; 1		; continuous		; min=0 , max=3.0	;					;range=TRUE, nlevels=3		;
+coexposition;	;	; 0.25		; continuous		; min=0 , max=1.0	;					;range=TRUE, nlevels=3		;
+

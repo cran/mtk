@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxd:experimentalDesign xmlns:mxd="http://www.reseau-mexico.fr/sites/reseau-mexico.fr/files/expDesign.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.reseau-mexico.fr/sites/reseau-mexico.fr/files/expDesign.xsd http://www.reseau-mexico.fr/sites/reseau-mexico.fr/files/expDesign.xsd" author="HR" license="GPL" date="2011-05-11" id="SCR3" version="3">
+    <mxd:description>
+        analyse de sensibilité sur le modèle tremblante génétique x épidémiologie
+    </mxd:description>
+    <mxd:factors>
+        <mxd:factor id="breed" mxd:name="breed">
+            <mxd:description>type de renouvellement: autorenouv=>autorenouvellement;
+			perte1=> féquences optimales calculées pour une perte génétique de 1%; 
+			pertemax=>fréquences optimales calculées pour une perte génétique maximale.</mxd:description>
+            <mxd:domain distributionName="discrete" nominalValue="autorenouv" mxd:valueType="xs:string">
+                <mxd:level mxd:value="autorenouv"/>
+                <mxd:level mxd:value="perte1"/>
+                <mxd:level mxd:value="pertemax"/>
+            </mxd:domain>
+            <mxd:feature mxd:name="ordered" mxd:value="FALSE" mxd:valueType="xs:boolean"/>
+        </mxd:factor>
+        <mxd:factor id="intro" mxd:name="intro">
+            
+            <mxd:description>
+                scénario d'introduction de la tremblante: 0=>une agnelle infectée initiale;
+                                                          1=> au plus une agnelle infectée introduite par an; 
+                                                          2=>une agnelle infectée introduite par an;
+            </mxd:description>
+            <mxd:domain distributionName="discrete" nominalValue="0" mxd:valueType="xs:integer">
+                <mxd:distributionParameter mxd:name="min" mxd:value="0" mxd:valueType="xs:integer"/>
+                <mxd:distributionParameter mxd:name="max" mxd:value="2" mxd:valueType="xs:integer"/>
+                <mxd:distributionParameter mxd:name="step" mxd:value="1" mxd:valueType="xs:integer"/>
+            </mxd:domain>
+            <mxd:feature mxd:name="ordered" mxd:value="TRUE" mxd:valueType="xs:boolean"/>
+        </mxd:factor>
+        <mxd:factor id="k_br" mxd:name="k_br">
+            <mxd:description>Coefficient de transmission des brebis pendant la période d'agnelage (en 1/années). </mxd:description>
+            <mxd:domain distributionName="continuous" nominalValue="2" mxd:valueType="xs:float">
+                <mxd:distributionParameter mxd:name="min" mxd:value="1" mxd:valueType="xs:float"/>
+                <mxd:distributionParameter mxd:name="max" mxd:value="4" mxd:valueType="xs:float"/>
+            </mxd:domain>
+        </mxd:factor>
+        <mxd:factor id="flock" mxd:name="flock">
+            <mxd:description> Type de troupeau (races laitières): 
+                MTR=Manech Tête Rousse (PA); 
+                MTN= Manech Tête Noire (PA); 
+                lacaunelait= Lacaune (Roquefort)
+            </mxd:description>
+            <mxd:domain distributionName="discrete" nominalValue="MTR" mxd:valueType="xs:string">
+                <mxd:level mxd:value="MTR"/>
+                <mxd:level mxd:value="MTN"/>
+                <mxd:level mxd:value="lacaunelait"/>
+            </mxd:domain><mxd:feature mxd:name="ordered" mxd:value="FALSE" mxd:valueType="xs:boolean"/>
+        </mxd:factor>
+        <mxd:factor id="beta1" mxd:name="beta1">
+            <mxd:description>
+                Paramètre de la distribution Beta des charges initiales (beta2 = 9 x beta1; moy=0.1)
+            </mxd:description>
+            <mxd:domain distributionName="continuous" nominalValue="10.7" mxd:valueType="xs:float"/>
+            <mxd:feature mxd:name="relative" mxd:value="TRUE" mxd:valueType="xs:boolean"/>
+            <mxd:feature mxd:name="percent" mxd:value="20" mxd:valueType="xs:float"/>
+        </mxd:factor>
+        <mxd:factor id="tau_med" mxd:name="tau_med">
+            <mxd:description>
+                Durée d'incubation "moyenne" des génotypes de sensibilité intermédiaire (en années)
+            </mxd:description>
+            <mxd:domain distributionName="continuous" nominalValue="2" mxd:valueType="xs:float">
+                <mxd:distributionParameter mxd:name="min" mxd:value="1.5" mxd:valueType="xs:float"/>
+                <mxd:distributionParameter mxd:name="max" mxd:value="3" mxd:valueType="xs:float"/>
+            </mxd:domain>
+            <mxd:feature mxd:name="range" mxd:value="TRUE" mxd:valueType="xs:boolean"/>
+        </mxd:factor>
+        <mxd:factor id="tau_ratio" mxd:name="tau_ratio">
+            <mxd:description>
+                Ratio entre les durées d'incubation "moyennes" des génotypes de sensibilités forte et intermédiaire: tau_short/tau_med (sans dimension, entre 0 et 1)
+            </mxd:description>
+            <mxd:domain distributionName="continuous" nominalValue="0.85" mxd:valueType="xs:float">
+                <mxd:distributionParameter mxd:name="min" mxd:value="0.7" mxd:valueType="xs:float"/>
+                <mxd:distributionParameter mxd:name="max" mxd:value="1" mxd:valueType="xs:float"/>
+            </mxd:domain>
+            <mxd:feature mxd:name="range" mxd:value="TRUE" mxd:valueType="xs:boolean"/>
+        </mxd:factor>
+        <mxd:factor id="sigma_med" mxd:name="sigma_med">
+            <mxd:description>
+                Sensibilité génétique relative des génotyes de sensibilité intermédaire (sans dimension entre 0 et 1)
+            </mxd:description>
+            <mxd:domain distributionName="continuous" nominalValue="0.6" mxd:valueType="xs:float">
+                <mxd:distributionParameter mxd:name="min" mxd:value="0.2" mxd:valueType="xs:float"/>
+                <mxd:distributionParameter mxd:name="max" mxd:value="1.0" mxd:valueType="xs:float"/>
+            </mxd:domain>
+            <mxd:feature mxd:name="range" mxd:value="TRUE" mxd:valueType="xs:boolean"/>
+        </mxd:factor>
+        <mxd:factor id="aseuil" mxd:name="aseuil">
+            <mxd:description>
+                Classe d'âge seuil à partir de laquelle la sensibilité par âge diminue (en classe d'âge)
+            </mxd:description>
+            <mxd:domain distributionName="discrete" nominalValue="5" mxd:valueType="xs:integer">
+                <mxd:level mxd:value="1"/>
+                <mxd:level mxd:value="5"/>
+                <mxd:level mxd:value="10"/>
+            </mxd:domain>
+            <mxd:feature mxd:name="ordered" mxd:value="TRUE" mxd:valueType="xs:boolean"/>
+            
+        </mxd:factor>
+        <mxd:factor id="sigma_amin" mxd:name="sigma_amin">
+            <mxd:description>
+                Sensibilité par âge relative pour les brebis plus âgées (sans dimension entre 0 et 1)
+            </mxd:description>
+            <mxd:domain distributionName="continuous" nominalValue="0.6" mxd:valueType="xs:float">
+                <mxd:distributionParameter mxd:name="min" mxd:value="0" mxd:valueType="xs:float"/>
+                <mxd:distributionParameter mxd:name="max" mxd:value="1" mxd:valueType="xs:float"/>
+            </mxd:domain>
+            <mxd:feature mxd:name="range" mxd:value="TRUE" mxd:valueType="xs:boolean"/>
+        </mxd:factor>
+        <mxd:factor id="k_r" mxd:name="k_r">
+            <mxd:description>
+                Coefficient de transmission résiduelle (en 1/années)
+            </mxd:description>
+            <mxd:domain distributionName="continuous" nominalValue="1" mxd:valueType="xs:float">
+                <mxd:distributionParameter mxd:name="min" mxd:value="0" mxd:valueType="xs:float"/>
+                <mxd:distributionParameter mxd:name="max" mxd:value="3" mxd:valueType="xs:float"/>
+            </mxd:domain>
+            <mxd:feature mxd:name="range" mxd:value="TRUE" mxd:valueType="xs:boolean"/>
+        </mxd:factor>
+        <mxd:factor id="coexposition" mxd:name="coexposition">
+            <mxd:description>
+                Coeefficient d'exposition des animaux ne mettant pas bas (sans dimension entre 0 et 1)
+            </mxd:description>
+            <mxd:domain distributionName="continuous" nominalValue="0.25" mxd:valueType="xs:float">
+                <mxd:distributionParameter mxd:name="min" mxd:value="0" mxd:valueType="xs:float"/>
+                <mxd:distributionParameter mxd:name="max" mxd:value="1" mxd:valueType="xs:float"/>
+            </mxd:domain>
+            <mxd:feature mxd:name="range" mxd:value="TRUE" mxd:valueType="xs:boolean"/>
+         </mxd:factor>
+    </mxd:factors>
+    <mxd:workflow>
+        <mxd:process stage="design">
+            <mxd:description>
+                Plan fractionnaire régulier implémenté sous R par HM
+            </mxd:description>
+            <mxd:call>R::BAO-JJ0::regularFraction.mtk</mxd:call>
+            <mxd:parameters>
+                <mxd:parameter mxd:name="nlevels" mxd:value="3" mxd:valueType="xs:integer"/>
+                <mxd:parameter mxd:name="sizebound" mxd:value="1000" mxd:valueType="xs:integer"/>
+                <mxd:parameter mxd:name="resolution" mxd:value="5" mxd:valueType="xs:integer"/>
+                <mxd:parameter mxd:name="replication" mxd:value="10" mxd:valueType="xs:integer"/>
+            </mxd:parameters>
+        </mxd:process>
+        <mxd:process stage="evaluate" licence="MIAJ" version="V-16-JUIN-2009">
+            <mxd:description>
+                Modèle de simulation implémenté sous Scilab décrivant la propagation de la tremblante dans un troupeau ovin. 
+                Entrées: valeurs des paramètres (1 ou plusieurs scénarios). 
+                Sorties: incidences totales cumulées au cours du temps (vecteur) et incidence totale cumulée finale (scalaire).
+            </mxd:description>
+            <mxd:call>http://iam/scilab</mxd:call>
+            <mxd:parameters>
+                <mxd:parameter mxd:name="" mxd:value="-nb" mxd:valueType="xs:string"/>
+                <mxd:parameter mxd:name="" mxd:value="-nwni" mxd:valueType="xs:string"/>
+                <mxd:parameter mxd:name="" mxd:value="-nogui" mxd:valueType="xs:string"/>
+                <mxd:parameter mxd:name="" mxd:value="-f test_mexico.sce" mxd:valueType="xs:string"/>
+                <mxd:parameter mxd:name="" mxd:value="-args plan $path_subproject" mxd:valueType="xs:string"/>
+            </mxd:parameters>
+        </mxd:process>
+        <mxd:process stage="analyze" licence="MIAJ" version="V0">
+            <mxd:description>
+                Package d'analyse de sensibilité basée sur ANOVA et ACP pour des sorties multi-variées, développé par MATI et al.
+            </mxd:description>
+            <mxd:call>R::gsi.ssc</mxd:call>
+            <mxd:parameters>
+                <mxd:parameter mxd:name="" mxd:value="0.0" mxd:valueType="xs:float"/>
+            </mxd:parameters>
+        </mxd:process>
+    </mxd:workflow>
+</mxd:experimentalDesign>

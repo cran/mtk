@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxd:experimentDesign author="MIAJ" date="2009-06-15"
+	xmlns:mxd="http://www.reseau-mexico.fr/formats/mexico.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.reseau-mexico.fr/formats/mexico.xsd exptDesign_v4JW.xsd "
+	nbFactors="12" nbMaxSubprojects="10" nbMinScenariosPerSubproject="1000"
+	projectHome="file:/home/st/scrapie_V0">
+	<description>
+		Version 0 de l'analyse de sensibilité sur le modèle tremblante
+		génétique x épidémiologie.
+	</description>
+	<factor id="breed" name="breed" nLevels="3">
+		<description>
+			type de renouvellement: autorenouv=>autorenouvellement;
+			perte1=> féquences optimales calculées pour une perte
+			génétique de 1%; pertemax=>fréquences optimales calculées
+			pour une perte génétique maximale.
+		</description>
+		<domain nominalValue="autorenouv">
+			<definition>
+				<discreteNonOrdered>
+					<level>
+						<valueString>autorenouv</valueString>
+						<valueString>perte1</valueString>
+						<valueString>pertemax</valueString>
+
+					</level>
+				</discreteNonOrdered>
+
+			</definition>
+		</domain>
+	</factor>
+	<factor name="intro" id="intro" nLevels="3">
+		<description>
+			scénario d'introduction de la tremblante: 0=>une agnelle
+			infectée initiale; 1=> au plus une agnelle infectée
+			introduite par an; 2=>une agnelle infectée introduite par
+			an; .
+		</description>
+		<domain nominalValue="0">
+			<definition>
+				<discreteOrdered>
+					<regularRange type="INTEGER">
+						<min>0</min>
+						<max>2</max>
+						<step>1</step>
+					</regularRange>
+
+				</discreteOrdered>
+
+			</definition>
+		</domain>
+	</factor>
+	<factor name="k_br" id="k_br" nLevels="3">
+		<description>
+			Coefficient de transmission des brebis pendant la période
+			d'agnelage (en 1/années).
+		</description>
+		<domain nominalValue="2">
+			<definition>
+				<continuousRange>
+					<min>1</min>
+					<max>4</max>
+				</continuousRange>
+			</definition>
+		</domain>
+	</factor>
+	<factor name="flock" id="flock" nLevels="3">
+		<description>
+			Type de troupeau (races laitières): MTR=Manech Tête Rousse
+			(PA); MTN= Manech Tête Noire (PA); lacaunelait= Lacaune
+			(Roquefort).
+		</description>
+		<domain nominalValue="MTR">
+			<definition>
+				<discreteNonOrdered>
+					<level>
+						<valueString>MTR</valueString>
+						<valueString>MTN</valueString>
+						<valueString>lacaunelait</valueString>
+
+					</level>
+				</discreteNonOrdered>
+
+			</definition>
+		</domain>
+	</factor>
+	<factor name="beta1" id="beta1" nLevels="3">
+		<description>
+			Paramètre de la distribution Beta des charges initiales
+			(beta2 = 9 x beta1; moy=0.1)
+		</description>
+		<domain nominalValue="10.7">
+			<definition>
+				<continuousRelative>
+					<nominalValue>10.7</nominalValue>
+					<percent>20</percent>
+				</continuousRelative>
+
+			</definition>
+		</domain>
+	</factor>
+	<factor name="tau_med" id="tau_med" nLevels="3">
+		<description>
+			Durée d'incubation "moyenne" des génotypes de sensibilité
+			intermédiaire (en années).
+		</description>
+		<domain nominalValue="2">
+			<definition>
+				<continuousRange>
+					<min>1.5</min>
+					<max>3</max>
+				</continuousRange>
+
+
+			</definition>
+		</domain>
+	</factor>
+	<factor name="tau_ratio" id="tau_ratio" nLevels="3">
+		<description>
+			Ratio entre les durées d'incubation "moyennes" des génotypes
+			de sensibilités forte et intermédiaire: tau_short/tau_med
+			(sans dimension, entre 0 et 1).
+		</description>
+		<domain nominalValue="0.85">
+			<definition>
+				<continuousRange>
+					<min>0.7</min>
+					<max>1</max>
+				</continuousRange>
+			</definition>
+		</domain>
+	</factor>
+	<factor name="sigma_med" id="sigma_med" nLevels="3">
+		<description>
+			Sensibilité génétique relative des génotyes de sensibilité
+			intermédaire (sans dimension entre 0 et 1).
+		</description>
+		<domain nominalValue="0.6">
+			<definition>
+				<continuousRange>
+					<min>0.2</min>
+					<max>1.0</max>
+				</continuousRange>
+			</definition>
+		</domain>
+	</factor>
+	<factor name="aseuil" id="aseuil" nLevels="3">
+		<description>
+			Classe d'âge seuil à partir de laquelle la sensibilité par
+			âge diminue (en classe d'âge).
+		</description>
+		<domain nominalValue="5">
+			<definition>
+				<discreteOrdered>
+					<level>
+						<valueInteger>1</valueInteger>
+						<valueInteger>5</valueInteger>
+						<valueInteger>10</valueInteger>
+
+					</level>
+
+
+				</discreteOrdered>
+
+			</definition>
+		</domain>
+	</factor>
+	<factor name="sigma_amin" id="sigma_amin" nLevels="3">
+		<description>
+			Sensibilité par âge relative pour les brebis plus âgées
+			(sans dimension entre 0 et 1)
+		</description>
+		<domain nominalValue="0.6">
+			<definition>
+				<continuousRange>
+					<min>0.0</min>
+					<max>1</max>
+				</continuousRange>
+			</definition>
+		</domain>
+	</factor>
+	<factor name="k_r" id="k_r" nLevels="3">
+		<description>
+			Coefficient de transmission résiduelle (en 1/années).
+		</description>
+		<domain nominalValue="1">
+			<definition>
+				<continuousRange>
+					<min>0.0</min>
+					<max>3.0</max>
+				</continuousRange>
+			</definition>
+		</domain>
+	</factor>
+	<factor name="coexposition" id="coexposition" nLevels="3">
+		<description>
+			Coeefficient d'exposition des animaux ne mettant pas bas
+			(sans dimension entre 0 et 1).
+		</description>
+		<domain nominalValue="0.25">
+			<definition>
+				<continuousRange>
+					<min>0.0</min>
+					<max>1.0</max>
+				</continuousRange>
+			</definition>
+		</domain>
+	</factor>
+	<design name="regular fraction" version="V0">
+		<description>
+			Plan fractionnaire régulier implémenté sous R par HM
+		</description>
+		<call>R::BAO-JJ0::regularFraction.bao</call>
+		<parameter name="nlevels">
+			<valueInteger>3</valueInteger>
+
+		</parameter>
+		<parameter name="sizebound">
+			<valueInteger>10000</valueInteger>
+
+		</parameter>
+		<parameter name="resolution">
+			<valueInteger>5</valueInteger>
+
+		</parameter>
+		<parameter name="replication">
+			<valueInteger>10</valueInteger>
+
+		</parameter>
+	</design>
+	<target licence="Private" name="scrapie_Evaluator"
+		version="V-16-JUIN-2009" one_run_only="false">
+		<description>
+			Modèle de simulation implémenté sous Scilab décrivant la
+			propagation de la tremblante dans un troupeau ovin. Entrées:
+			valeurs des paramètres (1 ou plusieurs scénarios). Sorties:
+			incidences totales cumulées au cours du temps (vecteur) et
+			incidence totale cumulée finale (scalaire).
+		</description>
+		<call>http://iam/scilab</call>
+		<option name="-nb"></option>
+		<option name="-nwni"></option>
+		<option name="-nogui"></option>
+		<option name="-f">
+			<value>/home/stouzeau/Scilab/Tests/test_mexico.sce</value>
+		</option>
+		<option name="-args">
+			<value>"plan $path_subproject "</value>
+		</option>
+	</target>
+	<analysis licence="private" name="GSI" version="V0">
+		<description>
+			Package d'analyse de sensibilité basée sur ANOVA et ACP pour
+			des sorties multi-variées, développé par MATI et al.
+		</description>
+		<call>R::gsi.ssc</call>
+		<parameter name="">
+			<valueFloat>0.0</valueFloat>
+		</parameter>
+	</analysis>
+</mxd:experimentDesign>

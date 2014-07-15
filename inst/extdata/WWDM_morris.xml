@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxd:experimentalDesign
+	xmlns:mxd="http://www.reseau-mexico.fr/sites/reseau-mexico.fr/files/expDesign.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.reseau-mexico.fr/sites/reseau-mexico.fr/files/expDesign.xsd expDesign_last.xsd "
+	author="JW RM ST" id="WWDM" date="2010-02-26" license="Private"
+	version="1.0">
+	
+	<mxd:description>
+		Winter Wheat Dry Matter Model (wwdm) est un modèle dynamique de culture à pas de temps journalier. 
+		Il a été développé à l'INRA (France) par David Makowski, Marie-Hélène Jeuffroy et Martine Guérif.
+	</mxd:description>
+	
+	<mxd:factors>
+		<mxd:factor id="Eb" mxd:name="Eb">
+			<mxd:domain nominalValue="1.85" distributionName="unif" mxd:valueType="xs:float">
+				<mxd:distributionParameter mxd:name="min" mxd:value="0.9" mxd:valueType="xs:float " />
+				<mxd:distributionParameter mxd:name="max" mxd:value="2.8" mxd:valueType="xs:float" />
+			</mxd:domain>
+		</mxd:factor>
+		
+		<mxd:factor id="Eimax" mxd:name="Eimax">
+			<mxd:domain nominalValue="0.94"
+				distributionName="unif" mxd:valueType="xs:float">
+				<mxd:distributionParameter mxd:name="min" mxd:value="0.9"
+					mxd:valueType="xs:float " /><mxd:distributionParameter
+					mxd:name="max" mxd:value="0.99" mxd:valueType="xs:float" />
+			</mxd:domain>
+		</mxd:factor>
+		
+		<mxd:factor id="K" mxd:name="K">
+			<mxd:domain nominalValue="0.7"
+				distributionName="unif" mxd:valueType="xs:float">
+				<mxd:distributionParameter mxd:name="min" mxd:value="0.6"
+					mxd:valueType="xs:float " /><mxd:distributionParameter
+					mxd:name="max" mxd:value="0.8" mxd:valueType="xs:float" />
+			</mxd:domain>
+		</mxd:factor>
+		
+		<mxd:factor id="Lmax" mxd:name="Lmax">
+			<mxd:domain nominalValue="7.5"
+				distributionName="unif" mxd:valueType="xs:float">
+				<mxd:distributionParameter mxd:name="min" mxd:value="3"
+					mxd:valueType="xs:float " /><mxd:distributionParameter
+					mxd:name="max" mxd:value="12" mxd:valueType="xs:float" />
+			</mxd:domain>
+		</mxd:factor>
+		
+		<mxd:factor id="A" mxd:name="A">
+			<mxd:domain nominalValue="0.0065"
+				distributionName="unif" mxd:valueType="xs:float">
+				<mxd:distributionParameter mxd:name="min" mxd:value="0.0035"
+					mxd:valueType="xs:float " /><mxd:distributionParameter
+					mxd:name="max" mxd:value="0.01" mxd:valueType="xs:float" />
+			</mxd:domain>
+		</mxd:factor>
+		
+		<mxd:factor id="B" mxd:name="B">
+			<mxd:domain nominalValue="0.00205"
+				distributionName="unif" mxd:valueType="xs:float">
+				<mxd:distributionParameter mxd:name="min" mxd:value="0.0011"
+					mxd:valueType="xs:float " /><mxd:distributionParameter
+					mxd:name="max" mxd:value="0.0025" mxd:valueType="xs:float" />
+			</mxd:domain>
+		</mxd:factor>
+		
+		<mxd:factor id="TI" mxd:name="TI">
+			<mxd:domain nominalValue="900"
+				distributionName="unif" mxd:valueType="xs:float">
+				<mxd:distributionParameter mxd:name="min" mxd:value="700"
+					mxd:valueType="xs:float " /><mxd:distributionParameter
+					mxd:name="max" mxd:value="1100" mxd:valueType="xs:float" />
+			</mxd:domain>
+		</mxd:factor>	
+		</mxd:factors>
+	<mxd:workflow>
+		<mxd:process stage="design">
+			<mxd:call>R://mtk/Morris</mxd:call>
+			<mxd:parameters>
+				<mxd:parameter mxd:name="type" mxd:value="oat" mxd:valueType="xs:string" />
+				<mxd:parameter mxd:name="levels" mxd:value="5" mxd:valueType="xs:integer" />
+				<mxd:parameter mxd:name="grid.jump" mxd:value="3" mxd:valueType="xs:integer" />
+				<mxd:parameter mxd:name="r" mxd:value="10" mxd:valueType="xs:integer"/>
+			</mxd:parameters>
+		</mxd:process>
+		<mxd:process stage="evaluate">
+			<mxd:call>R://mtk/WWDM</mxd:call>
+			<mxd:parameters>
+				<mxd:parameter mxd:name="year" mxd:value="3" mxd:valueType="xs:integer" />
+			</mxd:parameters>
+		</mxd:process>
+		<mxd:process stage="analyze">
+			<mxd:call>R://mtk/Morris</mxd:call>
+		</mxd:process>
+	</mxd:workflow>
+
+
+</mxd:experimentalDesign>

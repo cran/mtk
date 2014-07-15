@@ -1,0 +1,3 @@
+demo1		- Sensitivity analysis of the Ishigami model with the Monte-Carlo and Regression methods
+demo2 		- Sensitivity analysis of the Ishigami model with the Morris method
+demo3		- Sensitivity analysis of the WWDM model with the Morris method
